@@ -14,6 +14,19 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
+	/*
+	UPROPERTY(VisibleAnywhere)
+	int32 VisibleAnywhereInt = 12;
+
+	UPROPERTY(EditAnywhere)
+		int32 EditAnywhereInt = 2;
+
+	UPROPERTY(VisibleInstanceOnly)
+		int32 VisibleInstanceOnlyInt = 11;
+
+	UPROPERTY(EditAnywhere)
+	float Speed = 400.f;
+	*/
 
 protected:
 	// Called when the game starts or when spawned
@@ -21,7 +34,17 @@ protected:
 
 private:
 	UPROPERTY()
+		//See Forward Declaration
 		class UCapsuleComponent* CapsuleComp;
+
+	UPROPERTY()
+		UStaticMeshComponent* BaseMesh;
+
+	UPROPERTY()
+		UStaticMeshComponent* TurretMesh;
+
+	UPROPERTY()
+		USceneComponent* ProjectileSpawnPoint;
 
 public:	
 	// Called every frame
