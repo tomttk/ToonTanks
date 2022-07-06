@@ -6,7 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "DrawDebugHelpers.h"
 
 ATank::ATank()
 {
@@ -24,6 +23,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::Tick(float DeltaTime)
@@ -34,14 +35,17 @@ void ATank::Tick(float DeltaTime)
 	{
 		FHitResult HitResult;
 		PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
-
-		DrawDebugSphere(GetWorld(),
+		/*
+		DrawDebugSphere(
+			GetWorld(),
 			HitResult.ImpactPoint,
 			25.f,
 			12,
 			FColor::Red,
 			false,
 			-1.f);
+		*/
+		RotateTurret(HitResult.ImpactPoint);
 	}
 }
 
