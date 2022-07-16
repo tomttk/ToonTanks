@@ -56,6 +56,7 @@ void ATank::HandleDestruction()
 	// Hide player when klilled and disable ticking to keep the camera
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+	bAlive = false;
 }
 
 void ATank::BeginPlay()
